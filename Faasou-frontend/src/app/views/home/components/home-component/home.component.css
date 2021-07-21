@@ -1,0 +1,24 @@
+.img-box {
+  padding-top: 8rem;
+}
+div.search-bar {
+  border: 1px solid #dfe1e5;
+  box-shadow: none;
+  border-radius: 24px;
+  z-index: 3;
+  height: 44px;
+  margin: 0 auto;
+  width: 482px;
+  width: auto;
+}
+.search-bar-input {
+  width: 92%;
+  border: none;
+}
+.search-bar-input:focus {
+  border: none;
+  box-shadow: none !important;
+}
+.gab {
+  min-height: 24vh;
+}

@@ -28,8 +28,6 @@ const APP_CONTAINERS = [
 ];
 
 import {
-  AppAsideModule,
-  AppBreadcrumbModule,
   AppHeaderModule,
   AppFooterModule,
   AppSidebarModule,
@@ -41,22 +39,18 @@ import { AppRoutingModule } from './app.routing';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    AppAsideModule,
-    AppBreadcrumbModule.forRoot(),
     AppFooterModule,
     AppHeaderModule,
     AppSidebarModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
   ],
