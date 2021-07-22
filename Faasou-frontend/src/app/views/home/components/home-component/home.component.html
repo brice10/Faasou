@@ -4,13 +4,13 @@
   </div>
 
   <div class="row m-0 align-items-center justify-content-center bg-white">
-    <form class="form-inline my-2 my-lg-0 w-50">
+    <form [formGroup]="form" (ngSubmit)="search()" class="form-inline my-2 my-lg-0 w-50">
       <div class="search-bar d-flex align-items-center justify-content-space-between w-100">
         <span class="ml-3">
           <i class="fa fa-search"></i>
         </span>
-        <input type="text" name="input1-group2" placeholder="Username" class="form-control search-bar-input">
-        <span>
+        <input formControlName="input" type="text" name="input1-group2" placeholder="Saisir votre recherche" class="form-control search-bar-input">
+        <span *ngIf="f.input.value" (click)="clear()" class="clear-search animated fadeIn mr-3">
           <i class="fa fa-times"></i>
         </span>
       </div>
