@@ -23,6 +23,13 @@ export const routes: Routes = [
     loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule)
   },
   {
+    path: 'search',
+    data: {
+      title: 'Search Page'
+    },
+    loadChildren: () => import('./views/search/search.module').then(m => m.SearchModule)
+  },
+  {
     path: '404',
     component: P404Component,
     data: {

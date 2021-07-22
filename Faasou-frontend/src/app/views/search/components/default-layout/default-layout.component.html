@@ -1,0 +1,52 @@
+<app-header
+  [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 130, height: 60, alt: 'CoreUI Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
+  [sidebarToggler]="''"
+  [asideMenuToggler]="''"
+  class="pr-3"
+  style="border-bottom: 0;">
+  <ul class="nav navbar-nav d-md-down-none search w-50 ml-3">
+    <div class="row m-0 align-items-center justify-content-center bg-white w-100">
+      <form class="form-inline my-2 my-lg-0 m-10 w-100">
+        <div class="search-bar d-flex align-items-center justify-content-space-between w-100 p-3">
+          <input type="text" name="input1-group2" placeholder="Entrez votre recherche" class="form-control search-bar-input w-100">
+          <span class="mr-3">
+            <i class="fa fa-times"></i>
+          </span>
+          <span class="separator ">
+          </span>
+          <span>
+            <i class="fa fa-search"></i>
+          </span>
+        </div>
+      </form>
+    </div>
+  </ul>
+  <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item dropdown" dropdown placement="bottom left">
+      <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+        dropdownToggle (click)="false">
+        <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" />
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+        <div class="dropdown-header text-center"><strong>Account</strong></div>
+        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+      </div>
+    </li>
+  </ul>
+</app-header>
+
+<!-- Main content -->
+<main class="main">
+  <div>
+    <router-outlet></router-outlet>
+  </div><!-- /.container-fluid -->
+</main>
+
+<app-footer>
+  <span><a href="https://coreui.io">GTEAM</a> &copy; 2021 UDS.</span>
+  <span class="ml-auto">Powered by <a href="#">GTEAM</a></span>
+</app-footer>
