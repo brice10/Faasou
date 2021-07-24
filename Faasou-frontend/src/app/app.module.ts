@@ -40,6 +40,7 @@ import { AppRoutingModule } from './app.routing';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -54,6 +55,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     TabsModule.forRoot(),
     IconModule,
     IconSetModule.forRoot(),
+    HttpClientModule
   ],
   declarations: [
     AppComponent,

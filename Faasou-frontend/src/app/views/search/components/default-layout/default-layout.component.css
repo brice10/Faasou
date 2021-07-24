@@ -1,25 +1,30 @@
 div.search-bar {
-    border: 1px solid #dfe1e5;
-    box-shadow: none;
-    border-radius: 24px;
-    z-index: 3;
-    height: 44px;
-    margin: 0 auto;
-    width: 482px;
-    width: auto;
-  }
-  .search-bar-input {
-    width: 92%;
-    border: none;
-  }
-  .search-bar-input:focus {
-    border: none;
-    box-shadow: none !important;
-  }
+  border: 1px solid #dfe1e5;
+  box-shadow: none;
+  border-radius: 24px;
+  z-index: 3;
+  height: 44px;
+  margin: 0 auto;
+  width: 482px;
+  width: auto;
+  box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+}
+div.search-bar:hover {
+  box-shadow: 0 2px 8px 1px rgb(64 60 67 / 24%);
+  border-color: rgba(223,225,229,0);
+}
+.search-bar-input {
+  width: 92%;
+  border: none;
+}
+.search-bar-input:focus {
+  border: none;
+  box-shadow: none !important;
+}
 .separator{
-    border-left: 1px solid #5f6368;
-    height: 250%;
-    width: 10px;
+  border-left: 1px solid #dfe1e5;
+  height: 250%;
+  width: 10px;
 }
 app-header {
   height: 90px;

@@ -22,17 +22,15 @@ div.search-bar {
 .gab {
   min-height: 51vh;
 }
-
 .tabs-div{
   padding-top: 19px;
   margin-top: 91px !important;
   width: 50%;
-  margin-left: 11%;
+  margin-left: 11.5%;
 }
 @media (max-width: 720px) {
   .tabs-div{
     width: 98%;
     margin:auto;
-
   }
 }
