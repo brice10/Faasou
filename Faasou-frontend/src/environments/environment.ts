@@ -5,9 +5,10 @@
 
 export const environment = {
   production: false,
-  searchApiBasePath: 'https://serpapi.com/search',
+  searchApiBasePath: 'https://www.googleapis.com/customsearch/v1',
   // searchApiBasePath: 'https://serpapi.com/search/'
-  searchApiKey: '18fffce420365046d3d8554abe9c2a985b52de7f5227bf11510b461f96a65d50',
+  // searchApiKey: '18fffce420365046d3d8554abe9c2a985b52de7f5227bf11510b461f96a65d50',
+  searchApiKey: 'AIzaSyAvfA68xrz58NKE7ZwpVSdWgQao4Trv5Rk',
   searchEngine: {
     Google: 'google',
     Yahoo: 'yahoo'
