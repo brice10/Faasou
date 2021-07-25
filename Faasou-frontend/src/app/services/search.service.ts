@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { ISearchModel } from '../models/search.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,7 @@ export class SearchService implements OnInit {
 
   ngOnInit() { }
 
-  search(q: string): Observable<any> {
-    return this.http.get<any>(`${environment.searchApiBasePath}?q=${q}&cx=017576662512468239146:omuauf_lfve&key=${environment.searchApiKey}`, {
-      headers: new HttpHeaders({
-        'Access-Control-Allow-Origin':'*',
-      })
-    });
+  search(model: ISearchModel): Observable<any> {
+    return this.http.post<any>(`${environment.basePath}/search`, model);
   }
 }

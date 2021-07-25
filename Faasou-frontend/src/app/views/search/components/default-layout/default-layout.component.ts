@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { environment } from '../../../../../environments/environment';
+import { ISearchModel } from '../../../../models/search.model';
 import { SearchService } from '../../../../services/search.service';
+import { SEARCH_TYPES } from '../../../../utils/constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,9 +37,14 @@ export class DefaultLayoutComponent {
     })
   }
 
-  public search(): void {
+  public search(cx?: string, searchType?: string): void {
     const input: string = this.f.input.value;
-    this.searchService.search(input).toPromise().then(
+    const searchModel: ISearchModel = {
+      q: input,
+      cx: cx? cx: environment.defaultCx,
+      searchType: searchType? searchType: SEARCH_TYPES.SEARCH_TYPE_UNDEFINED
+    }
+    this.searchService.search(searchModel).toPromise().then(
       (result) => {
         if (result) {
           console.log(result);
