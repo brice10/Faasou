@@ -25,7 +25,7 @@ div.search-bar {
 .tabs-div{
   padding-top: 19px;
   margin-top: 91px !important;
-  width: 50%;
+  width: 70%;
   margin-left: 11.5%;
 }
 @media (max-width: 720px) {
@@ -33,4 +33,7 @@ div.search-bar {
     width: 98%;
     margin:auto;
   }
+}
+.search-result-title {
+  color: #1a0dab;
 }

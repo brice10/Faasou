@@ -13,6 +13,8 @@ import { SEARCH_TYPES } from '../../../../utils/constants';
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
   public form = this.fb.group({});
+  public isLoading: boolean = false;
+  public allSearchResults: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -38,6 +40,7 @@ export class DefaultLayoutComponent {
   }
 
   public search(cx?: string, searchType?: string): void {
+    this.isLoading = true;
     const input: string = this.f.input.value;
     const searchModel: ISearchModel = {
       q: input,
@@ -47,12 +50,17 @@ export class DefaultLayoutComponent {
     this.searchService.search(searchModel).toPromise().then(
       (result) => {
         if (result) {
+          this.allSearchResults = result;
           console.log(result);
         }
       }
     ).catch(
       (error) => {
         console.log(error);
+      }
+    ).finally(
+      () => {
+        this.isLoading = false;
       }
     )
   }

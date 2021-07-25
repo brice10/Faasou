@@ -9,13 +9,7 @@ const routes: Routes = [
     component: DefaultLayoutComponent,
     data: {
       title: 'Search'
-    },
-    children: [
-      {
-        path: '',
-        component: SearchComponent
-      }
-    ]
+    }
   }
 ];
 
