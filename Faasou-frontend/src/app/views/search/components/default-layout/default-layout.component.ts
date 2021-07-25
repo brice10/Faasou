@@ -15,6 +15,14 @@ export class DefaultLayoutComponent {
   public form = this.fb.group({});
   public isLoading: boolean = false;
   public allSearchResults: any[] = [];
+  public imagesSearchResults: any[] = [];
+
+  public firstColumnImages: any[] = [];
+
+  public secondColumnImages: any[] = [];
+
+  public thirdColumnImages: any[] = [];
+
 
   constructor(
     private fb: FormBuilder,
@@ -63,9 +71,52 @@ export class DefaultLayoutComponent {
         this.isLoading = false;
       }
     )
+    // Recherche des images
+    searchModel.searchType = SEARCH_TYPES.IMAGE;
+    this.searchService.search(searchModel).toPromise().then(
+      (result) => {
+        if (result) {
+          this.imagesSearchResults = result;
+          this.initializeColumnImages();
+          console.log(result);
+        }
+      }
+    ).catch(
+      (error) => {
+        console.log(error);
+      }
+    ).finally(
+      () => {
+        this.isLoading = false;
+      }
+    )
   }
 
   public clear(): void {
     this.form.reset();
+  }
+
+  public initializeColumnImages() {
+
+    var allImagesSize = this.imagesSearchResults.length;
+    const allImagesSizeDividedBy3 =Math.floor(allImagesSize/3);
+
+    var indiceTab=0;
+
+    do{
+      this.firstColumnImages[indiceTab] = this.imagesSearchResults[indiceTab];
+      indiceTab++;
+    }while(( indiceTab % allImagesSizeDividedBy3) !=0 )
+
+     do{
+      this.secondColumnImages[indiceTab] = this.imagesSearchResults[indiceTab];
+      indiceTab++;
+    }while((indiceTab%allImagesSizeDividedBy3) !=0 )
+
+
+    do{
+      this.thirdColumnImages[indiceTab] = this.imagesSearchResults[indiceTab];
+      indiceTab++;
+    }while(indiceTab < allImagesSize )
   }
 }
