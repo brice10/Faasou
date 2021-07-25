@@ -11,12 +11,11 @@
       <form [formGroup]="form" (ngSubmit)="search()" class="form-inline my-2 my-lg-0 m-10 w-100">
         <div class="search-bar d-flex align-items-center justify-content-space-between w-100 p-3">
           <input formControlName="input" type="text" name="input1-group2" placeholder="Entrez votre recherche" class="form-control search-bar-input w-100">
-          <span (click)="clear()" class="clear-search animated fadeIn mr-3">
+          <span (click)="clear()" class="clear-search pointer animated fadeIn mr-3">
             <i class="fa fa-times"></i>
           </span>
-          <span class="separator ">
-          </span>
-          <span class="ml-2 mr-1">
+          <span class="separator "></span>
+          <span (click)="search()" class="ml-2 mr-1 pointer">
             <i class="fa fa-search text-primary"></i>
           </span>
         </div>

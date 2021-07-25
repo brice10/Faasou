@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../../environments/environment';
 import { ISearchModel } from '../../../../models/search.model';
 import { SearchService } from '../../../../services/search.service';
@@ -26,11 +27,14 @@ export class DefaultLayoutComponent {
 
   constructor(
     private fb: FormBuilder,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.initForm();
+    const input = this.route.snapshot.queryParamMap.get('input');
+    this.initForm(input);
+    this.search();
   }
 
   toggleMinimize(e) {
@@ -41,55 +45,57 @@ export class DefaultLayoutComponent {
     return this.form.controls;
   }
 
-  public initForm(): void {
+  public initForm(input?:string): void {
     this.form = this.fb.group({
-      input: [''],
+      input: [input],
     })
   }
 
   public search(cx?: string, searchType?: string): void {
-    this.isLoading = true;
     const input: string = this.f.input.value;
-    const searchModel: ISearchModel = {
-      q: input,
-      cx: cx? cx: environment.defaultCx,
-      searchType: searchType? searchType: SEARCH_TYPES.SEARCH_TYPE_UNDEFINED
+    if(input.trim() != '') {
+      this.isLoading = true;
+      const searchModel: ISearchModel = {
+        q: input,
+        cx: cx? cx: environment.defaultCx,
+        searchType: searchType? searchType: SEARCH_TYPES.SEARCH_TYPE_UNDEFINED
+      }
+      this.searchService.search(searchModel).toPromise().then(
+        (result) => {
+          if (result) {
+            this.allSearchResults = result;
+            console.log(result);
+          }
+        }
+      ).catch(
+        (error) => {
+          console.log(error);
+        }
+      ).finally(
+        () => {
+          this.isLoading = false;
+        }
+      )
+      // Recherche des images
+      searchModel.searchType = SEARCH_TYPES.IMAGE;
+      this.searchService.search(searchModel).toPromise().then(
+        (result) => {
+          if (result) {
+            this.imagesSearchResults = result.items;
+            this.initializeColumnImages();
+            console.log(result);
+          }
+        }
+      ).catch(
+        (error) => {
+          console.log(error);
+        }
+      ).finally(
+        () => {
+          this.isLoading = false;
+        }
+      )
     }
-    this.searchService.search(searchModel).toPromise().then(
-      (result) => {
-        if (result) {
-          this.allSearchResults = result;
-          console.log(result);
-        }
-      }
-    ).catch(
-      (error) => {
-        console.log(error);
-      }
-    ).finally(
-      () => {
-        this.isLoading = false;
-      }
-    )
-    // Recherche des images
-    searchModel.searchType = SEARCH_TYPES.IMAGE;
-    this.searchService.search(searchModel).toPromise().then(
-      (result) => {
-        if (result) {
-          this.imagesSearchResults = result;
-          this.initializeColumnImages();
-          console.log(result);
-        }
-      }
-    ).catch(
-      (error) => {
-        console.log(error);
-      }
-    ).finally(
-      () => {
-        this.isLoading = false;
-      }
-    )
   }
 
   public clear(): void {
@@ -99,24 +105,26 @@ export class DefaultLayoutComponent {
   public initializeColumnImages() {
 
     var allImagesSize = this.imagesSearchResults.length;
-    const allImagesSizeDividedBy3 =Math.floor(allImagesSize/3);
+    const allImagesSizeDividedBy3 = Math.floor(allImagesSize/3);
 
-    var indiceTab=0;
-
-    do{
-      this.firstColumnImages[indiceTab] = this.imagesSearchResults[indiceTab];
+    this.firstColumnImages.push(this.imagesSearchResults[0])
+    var indiceTab=1;
+    while((indiceTab % allImagesSizeDividedBy3) !=0 ) {
+      this.firstColumnImages.push(this.imagesSearchResults[indiceTab]);
       indiceTab++;
-    }while(( indiceTab % allImagesSizeDividedBy3) !=0 )
+    }
 
-     do{
-      this.secondColumnImages[indiceTab] = this.imagesSearchResults[indiceTab];
+    this.secondColumnImages.push(this.imagesSearchResults[indiceTab]);
+    indiceTab++;
+    while((indiceTab%allImagesSizeDividedBy3) !=0 ) {
+      this.secondColumnImages.push(this.imagesSearchResults[indiceTab]);
       indiceTab++;
-    }while((indiceTab%allImagesSizeDividedBy3) !=0 )
+    }
 
 
-    do{
-      this.thirdColumnImages[indiceTab] = this.imagesSearchResults[indiceTab];
+    while(indiceTab < allImagesSize ) {
+      this.thirdColumnImages.push(this.imagesSearchResults[indiceTab]);
       indiceTab++;
-    }while(indiceTab < allImagesSize )
+    }
   }
 }

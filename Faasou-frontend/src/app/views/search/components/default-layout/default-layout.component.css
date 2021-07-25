@@ -29,3 +29,6 @@ div.search-bar:hover {
 app-header {
   height: 90px;
 }
+.pointer {
+  cursor: pointer;
+}

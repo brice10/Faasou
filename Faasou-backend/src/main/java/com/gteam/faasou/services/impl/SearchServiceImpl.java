@@ -55,7 +55,8 @@ public class SearchServiceImpl implements SearchService {
 		httpBuilder.addQueryParameter("key", search_api_key);
 		httpBuilder.addQueryParameter("cx", model.getCx());
 		httpBuilder.addQueryParameter("searchType", model.getSearchType().getSearchType());
-		httpBuilder.addQueryParameter("hq", Constants.COVID + " " + Constants.COVID19 + " " + Constants.CORONA_VIRUS + " " + Constants.PANDEMIE + " " + Constants.GEL_HYDROALCOLIQUE + " " + Constants.CONFINEMENT);
+		//httpBuilder.addQueryParameter("hq", Constants.COVID + " " + Constants.COVID19 + " " + Constants.CORONA_VIRUS + " " + Constants.PANDEMIE + " " + Constants.GEL_HYDROALCOLIQUE + " " + Constants.CONFINEMENT);
+		httpBuilder.addQueryParameter("hq", Constants.COVID19);
 		httpBuilder.addQueryParameter("q", model.getQ());
 		Request request =  builder.url(httpBuilder.build())
 							.get()
